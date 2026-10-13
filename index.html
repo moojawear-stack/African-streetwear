@@ -3,101 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mooja Wear | Venda Streetwear</title>
-    <!-- FontAwesome Icons for Social Media Links -->
+    <title>Mooja Wear | Venda African Streetwear</title>
+    <!-- Icons and Fonts -->
     <link rel="stylesheet" href="https://cloudflare.com">
-    <!-- Google Fonts for Bold Streetwear Typography -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Syncopate:wght@700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Pure, bulletproof CSS overrides to guarantee a dark theme layout */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { 
             font-family: 'Space Grotesk', sans-serif; 
-            background-color: #0b0b0b !important; 
+            background-color: #080808 !important; 
             color: #ffffff !important; 
             line-height: 1.6;
         }
-        .brand-heading { font-family: 'Syncopate', sans-serif; letter-spacing: -0.05em; }
+        .brand-heading { font-family: 'Syncopate', sans-serif; letter-spacing: -0.05em; text-transform: uppercase; }
         
         /* Announcement Banner */
         .announcement {
             background-color: #facc15;
             color: #000000;
             text-align: center;
-            padding: 10px;
-            font-size: 13px;
+            padding: 12px;
+            font-size: 12px;
             font-weight: bold;
-            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        /* Header Layout */
         header {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 24px;
+            padding: 30px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            border-b: 1px solid #27272a;
-            text-align: center;
-        }
-        @media(min-width: 768px) {
-            header { flex-direction: row; justify-content: space-between; text-align: left; }
+            border-bottom: 1px solid #1a1a1a;
         }
 
-        /* Product Container */
-        .product-grid {
+        .section-title {
+            font-size: 20px;
+            color: #facc15;
+            margin: 60px auto 20px auto;
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 24px;
+            padding: 0 20px;
+            border-left: 4px solid #facc15;
+            padding-left: 10px;
+        }
+
+        /* --- HERO PRODUCT SLIDER STYLE --- */
+        .hero-product {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
             display: grid;
             grid-template-columns: 1fr;
             gap: 40px;
         }
         @media(min-width: 768px) {
-            .product-grid { grid-template-columns: 1fr 1fr; }
+            .hero-product { grid-template-columns: 1.2fr 1fr; }
         }
 
-        /* Form Controls styling to make them dark and crisp */
-        select, input {
+        /* Image Slider Wrapper */
+        .slider-container {
+            position: relative;
             width: 100%;
-            background-color: #000000 !important;
-            color: #ffffff !important;
-            border: 1px solid #27272a !important;
-            padding: 12px;
-            font-size: 16px; /* Prevents auto-zoom on iOS */
-            margin-bottom: 20px;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            border: 1px solid #1a1a1a;
+            background-color: #121212;
         }
+        .slider-track {
+            display: flex;
+            width: 200%; /* Space for 2 images side-by-side */
+            height: 100%;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .slider-slide {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .slider-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .slider-label {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            background: rgba(0,0,0,0.85);
+            padding: 6px 12px;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+            border: 1px solid #333;
+        }
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border: 1px solid #222;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            z-index: 10;
+        }
+        .slider-arrow:hover { background: #facc15; color: black; }
+        .arrow-left { left: 10px; }
+        .arrow-right { right: 10px; }
 
-        /* Size Selection Buttons */
-        .size-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
-        .size-btn {
+        /* Order Box Controls */
+        select, .qty-input {
+            width: 100%;
             background-color: #000000;
             color: #ffffff;
-            border: 1px solid #27272a;
+            border: 1px solid #1a1a1a;
+            padding: 14px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            font-family: inherit;
+        }
+        .size-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
+        .size-tab {
+            background-color: #000000;
+            color: white;
+            border: 1px solid #1a1a1a;
             padding: 12px;
             font-weight: bold;
             cursor: pointer;
             text-align: center;
         }
-
-        /* Active sizing visual indicator state */
-        .size-btn.active {
-            background-color: #ffffff !important;
-            color: #000000 !important;
-            border-color: #ffffff !important;
-        }
-
-        /* Quantity Field layout custom adjustments */
-        .qty-box { display: flex; max-width: 140px; border: 1px solid #27272a; margin-bottom: 25px; }
-        .qty-box button { background: none; border: none; color: white; width: 45px; font-size: 20px; cursor: pointer; }
-        .qty-box input { border: none !important; margin-bottom: 0; text-align: center; font-family: monospace; }
-
-        /* Order Button styling */
-        .checkout-btn {
+        .size-tab.active { background-color: #ffffff !important; color: #000000 !important; border-color: #ffffff !important; }
+        
+        .whatsapp-btn {
             width: 100%;
             background-color: #ffffff;
             color: #000000;
@@ -105,39 +154,91 @@
             text-transform: uppercase;
             padding: 16px;
             border: none;
-            font-size: 16px;
             cursor: pointer;
-            letter-spacing: 0.05em;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
+            letter-spacing: 0.05em;
         }
-        .checkout-btn:hover { background-color: #facc15; }
+        .whatsapp-btn:hover { background-color: #facc15; }
 
-        /* Images visual blocks templates placeholder styling */
-        .image-box {
+        /* --- 4 PRODUCT CATALOG GRID STYLE --- */
+        .catalog-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        @media(min-width: 992px) {
+            .catalog-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+        .catalog-card {
+            background-color: #0f0f0f;
+            border: 1px solid #1a1a1a;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .catalog-img-box {
             width: 100%;
-            aspect-ratio: 1 / 1;
+            aspect-ratio: 1/1;
             background-color: #18181b;
-            border: 1px solid #27272a;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #71717a;
+            color: #444;
+            font-size: 11px;
+            text-align: center;
+        }
+        .catalog-img-box img { width: 100%; height: 100%; object-fit: cover; }
+        .catalog-title { font-size: 14px; font-weight: bold; margin-bottom: 5px; text-transform: uppercase; }
+        .catalog-price { font-size: 13px; color: #a1a1aa; font-family: monospace; margin-bottom: 15px; }
+
+        /* --- 3 LOOKBOOK GALLERY STYLE --- */
+        .lookbook-grid {
+            max-width: 1200px;
+            margin: 0 auto 80px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        @media(min-width: 768px) {
+            .lookbook-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        .lookbook-card {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 3 / 4; /* Editorial portrait fit */
+            background-color: #121212;
+            border: 1px solid #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
             font-size: 12px;
+            overflow: hidden;
+        }
+        .lookbook-card img { width: 100%; height: 100%; object-fit: cover; }
+        .lookbook-tag {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            font-size: 10px;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-weight: bold;
+            color: #a1a1aa;
+            background-color: rgba(0,0,0,0.75);
+            padding: 4px 8px;
+            border: 1px solid #222;
         }
 
-        /* Footer styling layout template configuration blocks */
-        footer {
-            background-color: #050505;
-            border-top: 1px solid #18181b;
-            padding: 60px 24px;
-            margin-top: 80px;
-        }
+        /* Footer Layout Elements */
+        footer { background-color: #030303; border-top: 1px solid #111; padding: 60px 20px; }
         .footer-grid {
             max-width: 1200px;
             margin: 0 auto;
@@ -145,93 +246,48 @@
             grid-template-columns: 1fr;
             gap: 40px;
         }
-        @media(min-width: 768px) {
-            .footer-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-        .footer-title { color: #a1a1aa; font-size: 12px; text-transform: uppercase; tracking-wider: 0.1em; margin-bottom: 15px; }
-        .footer-text { color: #71717a; font-size: 14px; }
-        .social-icons { display: flex; gap: 12px; margin-top: 10px; }
-        .social-icons a {
-            width: 45px;
-            height: 45px;
-            background-color: #111;
+        @media(min-width: 768px) { .footer-grid { grid-template-columns: repeat(3, 1fr); } }
+        .footer-col h4 { color: #666; font-size: 11px; margin-bottom: 15px; }
+        .footer-col p { color: #888; font-size: 14px; }
+        .social-row { display: flex; gap: 10px; margin-top: 15px; }
+        .social-row a {
+            width: 44px;
+            height: 44px;
+            background-color: #0a0a0a;
             border: 1px solid #222;
             color: white;
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            font-size: 18px;
         }
-        .social-icons a:hover { background-color: #facc15; color: black; }
+        .social-row a:hover { background-color: #facc15; color: black; }
     </style>
 </head>
 <body>
 
     <!-- 1. TOP ANNOUNCEMENT BANNER -->
     <div class="announcement brand-heading">
-        🚀 FREE SHIPPING IN SOUTH AFRICA FOR THE FIRST 50 ORDERS • DROPPING SOON
+        ⚡ FREE SHIPPING IN SOUTH AFRICA FOR THE FIRST 50 ORDERS • DROPPING SOON
     </div>
 
-    <!-- 2. HERO / HEADER SECTION -->
+    <!-- 2. BRAND HEADER -->
     <header>
-        <div>
-            <h1 class="brand-heading" style="color: #facc15; font-size: 28px;">MOOJA WEAR</h1>
-            <p style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: #a1a1aa; margin-top: 4px;">Venda, Limpopo 🇿🇦</p>
-        </div>
+        <h1 class="brand-heading" style="color: #facc15; font-size: 32px;">MOOJA WEAR</h1>
+        <p style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.25em; color: #666; margin-top: 5px;">Venda, Limpopo 🇿🇦</p>
     </header>
 
-    <!-- 3. MAIN PRODUCT SHOWCASE SECTION -->
-    <main class="product-grid">
+    <!-- SECTION TITLE: FEATURED HERO -->
+    <div class="section-title brand-heading">Featured Drop</div>
+
+    <!-- 3. HERO PRODUCT SECTION WITH SLIDER -->
+    <main class="hero-product">
         
-        <!-- Product Images Box -->
-        <div>
-            <div class="image-box">[ OVERSIZED BOXY T-SHIRT FRONT ]</div>
-        </div>
-
-        <!-- Product Ordering Interface Details -->
-        <div>
-            <span style="color: #facc15; font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.1em;">Premium Heavyweight Drop</span>
-            <h2 class="brand-heading" style="font-size: 36px; margin: 10px 0; uppercase">Muthu Wa Mvela <br>Boxy Tee</h2>
+        <!-- Interactive Front/Back Slider Container -->
+        <div class="slider-container">
+            <button class="slider-arrow arrow-left" onclick="slideHero(0)"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="slider-arrow arrow-right" onclick="slideHero(1)"><i class="fa-solid fa-chevron-right"></i></button>
             
-            <p style="color: #a1a1aa; font-size: 15px; margin-bottom: 20px;">
-                Engineered in Venda. Crafted for the concrete. Features an ultra-premium heavyweight cotton blend, a strict dropped shoulder silhouette, and an oversized boxy aesthetic that hangs perfectly on all body types.
-            </p>
-
-            <div style="border-top: 1px solid #27272a; border-bottom: 1px solid #27272a; padding: 15px 0; margin-bottom: 25px;">
-                <span style="font-size: 24px; font-weight: bold; font-family: monospace;">R 450.00</span>
-                <span style="font-size: 12px; color: #71717a; display: block; mt: 4px;">Pay on order validation via WhatsApp secure dispatch.</span>
-            </div>
-
-            <!-- Interactivity Choice Elements forms options selections styling fields -->
-            <div>
-                <label style="display: block; font-size: 11px; text-transform: uppercase; font-weight: bold; color: #a1a1aa; margin-bottom: 8px;">Select Color</label>
-                <select id="tee-color">
-                    <option value="Venda Earth Brown">Venda Earth Brown</option>
-                    <option value="Limpopo Deep Charcoal">Limpopo Deep Charcoal</option>
-                    <option value="Ancestral Heritage Off-White">Ancestral Heritage Off-White</option>
-                    <option value="Sovereign Black">Sovereign Black</option>
-                </select>
-
-                <label style="display: block; font-size: 11px; text-transform: uppercase; font-weight: bold; color: #a1a1aa; margin-bottom: 8px;">Select Size (Oversized Fit)</label>
-                <div class="size-container">
-                    <button type="button" onclick="setSize('S')" class="size-btn">S</button>
-                    <button type="button" onclick="setSize('M')" class="size-btn">M</button>
-                    <button type="button" onclick="setSize('L')" class="size-btn">L</button>
-                    <button type="button" onclick="setSize('XL')" class="size-btn">XL</button>
-                </div>
-                <input type="hidden" id="tee-size" value="">
-
-                <label style="display: block; font-size: 11px; text-transform: uppercase; font-weight: bold; color: #a1a1aa; margin-bottom: 8px;">Quantity</label>
-                <div class="qty-box">
-                    <button type="button" onclick="adjustQty(-1)">-</button>
-                    <input type="number" id="tee-qty" value="1" min="1" readonly>
-                    <button type="button" onclick="adjustQty(1)">+</button>
-                </div>
-            </div>
-
-            <!-- WhatsApp Instant Action Button Trigger Interface Component layout styling wrapper hooks -->
-            <div style="margin-top: 20px;">
-                <button onclick="sendWhatsAppOrder()" class="checkout-btn">
-                    <i class="fa-brands fa-whatsapp" style="font-size: 20px;"></i> Order via WhatsApp
-                </button>
+            <div class="slider-track" id="heroTrack">
+                <!-- Slide 1: Front View -->
+                <div class="slider-slide">
